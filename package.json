@@ -1,0 +1,38 @@
+{
+  "name": "umiregistartion",
+  "version": "1.0.0",
+  "description": "umi registration tg bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm i && nodemon -L index.js",
+    "dev": "nodemon -L index.js",
+    "heroku": "git add -A && git commit -m \"Bot update\" && git push && heroku logs --tail --app umi-roybot",
+    "gitDeploy": "git add . && git commit -m \"Bot update\" && git push",
+    "caprover": "rm *.tar && tar -cf umi-roy-bot.tar --exclude='node_modules' --exclude='Dockerfile' --exclude='.env' --exclude='Procfile' --exclude='.gitignore' * && caprover deploy -t umi-roy-bot.tar -n ROYClub -a umi-roy-bot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uhomuho/umiRegistartion.git"
+  },
+  "keywords": [
+    "umi",
+    "register",
+    "tg",
+    "bot",
+    "tbBot"
+  ],
+  "author": "Uhomuho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uhomuho/umiRegistartion/issues"
+  },
+  "homepage": "https://github.com/uhomuho/umiRegistartion#readme",
+  "dependencies": {
+    "@umi-top/umi-core-js": "^1.0.1",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "telegraf": "^3.38.0"
+  }
+}
