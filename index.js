@@ -1,5 +1,6 @@
 require('dotenv').config()
 const Telegraf  	= require('telegraf'),
+			express 		= require('express'),
 			token 			= process.env.TOKEN,
 			bot 				= new Telegraf(token),
 			{ post } 		= require('axios')
@@ -25,5 +26,26 @@ bot.start(ctx => {
 		.then(user => console.log(user))
 })
 
-bot.telegram.deleteWebhook()
-bot.startPolling()
+
+const URL = process.env.URL || '',
+			PORT = process.env.PORT || 5000
+console.log(URL+':'+PORT)
+
+if (URL) {
+	const app = express()
+	bot.telegram.setWebhook(`${URL}bot${token}`);
+	app.use(bot.webhookCallback(`/bot${token}`));
+	
+	app.get('/', (req, res) => {
+		res.send('Hello World!');
+	});
+	app.listen(PORT, () => {
+		console.log(`Server running on port ${PORT}`);
+	});
+} else {
+	bot.telegram.deleteWebhook()
+	bot.startPolling()
+}
+
+// bot.telegram.deleteWebhook()
+// bot.startPolling()
