@@ -16,7 +16,6 @@ bot.settings(async ctx => {
 })
 
 bot.hears('/get_order', ctx => {
-	console.log('xex')
 	return post(`${process.env.BACKEND}/get_order`)
 })
 bot.on('dice', (ctx) => ctx.reply(`Value: ${ctx.message.dice.value}`))
