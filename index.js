@@ -16,7 +16,10 @@ bot.settings(async ctx => {
 })
 
 bot.hears('/get_order', ctx => {
-	return post(`${process.env.BACKEND}/get_order`)
+	ctx.getChat()
+		.then(chat => {
+			return post(`${process.env.BACKEND}/get_order`, { chat_id: chat.id })
+		})
 })
 bot.on('dice', (ctx) => ctx.reply(`Value: ${ctx.message.dice.value}`))
 
